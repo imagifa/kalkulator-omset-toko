@@ -28,6 +28,10 @@
         .step-container.active { display: block; opacity: 1; transform: translateX(0); animation: slideIn 0.4s ease-out forwards; }
         
         @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
     </style>
 </head>
 <body class="p-4 md:p-8 max-w-xl mx-auto min-h-screen flex flex-col">
@@ -92,7 +96,7 @@
         <div class="glass-card mb-6">
             <div class="mb-6 border-b border-slate-700 pb-5">
                 <h3 class="text-sm font-bold text-slate-300 mb-3 flex items-center gap-2 uppercase tracking-wide">
-                    <span>1. Ketuk Channel Yang Dipakai</span>
+                    <span>1. Pilih Channel Yang Dipakai</span>
                 </h3>
                 <div class="grid grid-cols-2 gap-2">
                     <label class="cursor-pointer relative">
@@ -102,43 +106,43 @@
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleWA" class="sr-only peer" checked onchange="handleToggle('slideWA')">
+                        <input type="checkbox" id="toggleWA" class="sr-only peer" onchange="handleToggle('slideWA')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             WhatsApp
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleTiktok" class="sr-only peer" checked onchange="handleToggle('slideTiktok')">
+                        <input type="checkbox" id="toggleTiktok" class="sr-only peer" onchange="handleToggle('slideTiktok')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             TikTok Live
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleIG" class="sr-only peer" checked onchange="handleToggle('slideIG')">
+                        <input type="checkbox" id="toggleIG" class="sr-only peer" onchange="handleToggle('slideIG')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             IG / Meta Ads
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleMarketplace" class="sr-only peer" checked onchange="handleToggle('slideMarketplace')">
+                        <input type="checkbox" id="toggleMarketplace" class="sr-only peer" onchange="handleToggle('slideMarketplace')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             Marketplace
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleCanvassing" class="sr-only peer" checked onchange="handleToggle('slideCanvassing')">
+                        <input type="checkbox" id="toggleCanvassing" class="sr-only peer" onchange="handleToggle('slideCanvassing')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             Canvassing
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleKomunitas" class="sr-only peer" checked onchange="handleToggle('slideKomunitas')">
+                        <input type="checkbox" id="toggleKomunitas" class="sr-only peer" onchange="handleToggle('slideKomunitas')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             Komunitas
                         </div>
                     </label>
                     <label class="cursor-pointer relative">
-                        <input type="checkbox" id="toggleEvent" class="sr-only peer" checked onchange="handleToggle('slideEvent')">
+                        <input type="checkbox" id="toggleEvent" class="sr-only peer" onchange="handleToggle('slideEvent')">
                         <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
                             Event Bulanan
                         </div>
@@ -156,87 +160,87 @@
                     <div id="wrapperOffline" class="block animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">Toko Offline</span>
-                            <span id="valOffline" class="font-bold text-indigo-400 text-sm">20%</span>
+                            <span id="valOffline" class="font-bold text-indigo-400 text-sm">100%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideOffline" min="0" max="100" value="20">
+                            <input type="range" id="slideOffline" min="0" max="100" value="100">
                             <span id="leadOffline" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperWA" class="block animate-fade">
+                    <div id="wrapperWA" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">WhatsApp</span>
-                            <span id="valWA" class="font-bold text-indigo-400 text-sm">15%</span>
+                            <span id="valWA" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideWA" min="0" max="100" value="15">
+                            <input type="range" id="slideWA" min="0" max="100" value="0">
                             <span id="leadWA" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperTiktok" class="block animate-fade">
+                    <div id="wrapperTiktok" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">TikTok Live</span>
-                            <span id="valTiktok" class="font-bold text-indigo-400 text-sm">20%</span>
+                            <span id="valTiktok" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideTiktok" min="0" max="100" value="20">
+                            <input type="range" id="slideTiktok" min="0" max="100" value="0">
                             <span id="leadTiktok" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperIG" class="block animate-fade">
+                    <div id="wrapperIG" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">IG / Meta Ads</span>
-                            <span id="valIG" class="font-bold text-indigo-400 text-sm">10%</span>
+                            <span id="valIG" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideIG" min="0" max="100" value="10">
+                            <input type="range" id="slideIG" min="0" max="100" value="0">
                             <span id="leadIG" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperMarketplace" class="block animate-fade">
+                    <div id="wrapperMarketplace" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">Marketplace</span>
-                            <span id="valMarketplace" class="font-bold text-indigo-400 text-sm">15%</span>
+                            <span id="valMarketplace" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideMarketplace" min="0" max="100" value="15">
+                            <input type="range" id="slideMarketplace" min="0" max="100" value="0">
                             <span id="leadMarketplace" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperCanvassing" class="block animate-fade">
+                    <div id="wrapperCanvassing" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">Canvassing Agen</span>
-                            <span id="valCanvassing" class="font-bold text-indigo-400 text-sm">10%</span>
+                            <span id="valCanvassing" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideCanvassing" min="0" max="100" value="10">
+                            <input type="range" id="slideCanvassing" min="0" max="100" value="0">
                             <span id="leadCanvassing" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperKomunitas" class="block animate-fade">
+                    <div id="wrapperKomunitas" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">Komunitas</span>
-                            <span id="valKomunitas" class="font-bold text-indigo-400 text-sm">5%</span>
+                            <span id="valKomunitas" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideKomunitas" min="0" max="100" value="5">
+                            <input type="range" id="slideKomunitas" min="0" max="100" value="0">
                             <span id="leadKomunitas" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
 
-                    <div id="wrapperEvent" class="block animate-fade">
+                    <div id="wrapperEvent" class="hidden animate-fade">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-medium text-slate-200 text-sm">Event Bulanan</span>
-                            <span id="valEvent" class="font-bold text-indigo-400 text-sm">5%</span>
+                            <span id="valEvent" class="font-bold text-indigo-400 text-sm">0%</span>
                         </div>
                         <div class="flex items-center gap-4">
-                            <input type="range" id="slideEvent" min="0" max="100" value="5">
+                            <input type="range" id="slideEvent" min="0" max="100" value="0">
                             <span id="leadEvent" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
                     </div>
@@ -305,7 +309,6 @@
     </footer>
 
     <style>
-        /* Efek transisi ringan saat slider muncul/hilang */
         .animate-fade { transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; }
     </style>
 
@@ -373,7 +376,7 @@
 
         function handleToggle(sliderId) {
             const toggleId = sliderId.replace('slide', 'toggle');
-            const wrapperId = sliderId.replace('slide', 'wrapper'); // Ambil ID container slidernya
+            const wrapperId = sliderId.replace('slide', 'wrapper'); 
             const isChecked = document.getElementById(toggleId).checked;
             
             let activeIds = getActiveSliders();
@@ -387,13 +390,13 @@
             const sliderEl = document.getElementById(sliderId);
 
             if (!isChecked) {
-                wrapperEl.classList.add('hidden'); // Sembunyikan slider jika channel mati
+                wrapperEl.classList.add('hidden'); 
                 sliderEl.disabled = true;
                 sliderEl.value = 0;
                 oldValues[sliderId] = 0;
                 rebalanceAllActive();
             } else {
-                wrapperEl.classList.remove('hidden'); // Munculkan slider jika channel nyala
+                wrapperEl.classList.remove('hidden'); 
                 sliderEl.disabled = false;
                 sliderEl.value = 10; 
                 handleSliderChange({ target: { id: sliderId, value: 10 } });
