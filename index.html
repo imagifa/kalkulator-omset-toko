@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Targetify - Retail Strategy Simulator</title>
+    <title>Targetify - Retail Strategy Simulator by IMAGIFA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -32,6 +32,11 @@
             from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
         }
+        
+        /* Custom Scrollbar for list */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
     </style>
 </head>
 <body class="p-4 md:p-8 max-w-xl mx-auto min-h-screen flex flex-col">
@@ -97,10 +102,10 @@
             </div>
             
             <div class="bg-indigo-900/30 border border-indigo-800/50 rounded-xl p-4 mb-6">
-                <p class="text-sm text-indigo-200 leading-relaxed">Untuk mencapai target, dibutuhkan <span id="totalLeadText" class="font-black text-white text-base bg-indigo-500/20 px-2 py-0.5 rounded">0</span> Leads (Asumsi konversi 10%).</p>
+                <p class="text-sm text-indigo-200 leading-relaxed">Untuk capai target, butuh <span id="totalLeadText" class="font-black text-white text-base bg-indigo-500/20 px-2 py-0.5 rounded">0</span> Leads (Konversi 10%).</p>
             </div>
             
-            <div class="space-y-7">
+            <div class="space-y-7 max-h-[50vh] overflow-y-auto custom-scroll pr-2">
                 <div class="transition-opacity duration-300" id="groupOffline">
                     <div class="flex justify-between items-center mb-3">
                         <div class="flex items-center gap-3">
@@ -142,7 +147,7 @@
                                 <input type="checkbox" id="toggleTiktok" class="sr-only peer" checked onchange="handleToggle('slideTiktok')">
                                 <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
                             </label>
-                            <span class="font-semibold text-slate-200">TikTok (Live & Video)</span>
+                            <span class="font-semibold text-slate-200">TikTok (Live/Video)</span>
                         </div>
                         <span id="valTiktok" class="font-bold text-indigo-400 text-sm">20%</span>
                     </div>
@@ -159,7 +164,7 @@
                                 <input type="checkbox" id="toggleIG" class="sr-only peer" checked onchange="handleToggle('slideIG')">
                                 <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
                             </label>
-                            <span class="font-semibold text-slate-200">Instagram (Ads)</span>
+                            <span class="font-semibold text-slate-200">Instagram (Ads/Feed)</span>
                         </div>
                         <span id="valIG" class="font-bold text-indigo-400 text-sm">10%</span>
                     </div>
@@ -202,6 +207,41 @@
                         <span id="leadCanvassing" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
                     </div>
                 </div>
+
+                <div class="transition-opacity duration-300" id="groupKomunitas">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-3">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="toggleKomunitas" class="sr-only peer" checked onchange="handleToggle('slideKomunitas')">
+                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
+                            </label>
+                            <span class="font-semibold text-slate-200">Komunitas (Sekolah dll)</span>
+                        </div>
+                        <span id="valKomunitas" class="font-bold text-indigo-400 text-sm">5%</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <input type="range" id="slideKomunitas" min="0" max="100" value="5">
+                        <span id="leadKomunitas" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
+                    </div>
+                </div>
+
+                <div class="transition-opacity duration-300" id="groupEvent">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="flex items-center gap-3">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="toggleEvent" class="sr-only peer" checked onchange="handleToggle('slideEvent')">
+                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
+                            </label>
+                            <span class="font-semibold text-slate-200">Event Bulanan</span>
+                        </div>
+                        <span id="valEvent" class="font-bold text-indigo-400 text-sm">5%</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <input type="range" id="slideEvent" min="0" max="100" value="5">
+                        <span id="leadEvent" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
+                    </div>
+                </div>
+
             </div>
         </div>
         
@@ -217,31 +257,36 @@
 
     <div id="step-3" class="step-container flex-grow">
         <div class="glass-card bg-gradient-to-b from-indigo-900/40 to-slate-900 mb-6">
-            <h2 class="text-xl font-bold mb-6 text-white flex items-center gap-3 border-b border-slate-700 pb-4">
+            <h2 class="text-xl font-bold mb-5 text-white flex items-center gap-3 border-b border-slate-700 pb-4">
                 <span class="bg-emerald-500/20 text-emerald-400 p-2 rounded-lg">✅</span> Kesimpulan Target
             </h2>
             
-            <div class="space-y-4 text-base">
-                <div class="flex justify-between items-center py-3 border-b border-slate-700/50">
+            <div class="space-y-3 text-base mb-6">
+                <div class="flex justify-between items-center py-2 border-b border-slate-700/50">
                     <span class="text-slate-300 font-medium">Estimasi Omzet</span>
                     <span id="kesimpulanOmzet" class="font-black text-cyan-400 text-xl">Rp 0</span>
                 </div>
-                <div class="flex justify-between items-center py-3 border-b border-slate-700/50">
+                <div class="flex justify-between items-center py-2 border-b border-slate-700/50">
                     <span class="text-slate-300">Target Harian</span>
                     <span id="kesimpulanHarian" class="font-bold text-white bg-slate-800 px-3 py-1 rounded-lg">0 Pcs</span>
                 </div>
-                <div class="flex justify-between items-center py-3 border-b border-slate-700/50">
+                <div class="flex justify-between items-center py-2 border-b border-slate-700/50">
                     <span class="text-slate-300">Target Mingguan</span>
                     <span id="kesimpulanMingguan" class="font-bold text-white bg-slate-800 px-3 py-1 rounded-lg">0 Pcs</span>
                 </div>
-                <div class="flex justify-between items-center py-3 border-b border-slate-700/50">
+                <div class="flex justify-between items-center py-2">
                     <span class="text-slate-300">Target Bulanan</span>
                     <span id="kesimpulanBulanan" class="font-extrabold text-white text-lg">0 Pcs</span>
                 </div>
-                <div class="flex justify-between items-center py-3 mt-2 bg-emerald-900/20 px-4 rounded-xl border border-emerald-800/50">
-                    <span class="text-emerald-200 font-medium">Target Repeat Order</span>
-                    <span id="kesimpulanRO" class="font-bold text-emerald-400">0 Transaksi</span>
-                </div>
+            </div>
+
+            <div class="bg-slate-800/60 rounded-xl p-4 border border-slate-700 shadow-inner">
+                <h3 class="text-xs font-bold text-indigo-300 mb-3 uppercase tracking-widest flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    Action Plan (Leads Required)
+                </h3>
+                <div id="actionPlanContainer" class="space-y-2">
+                    </div>
             </div>
         </div>
 
@@ -267,15 +312,10 @@
 
         // Logic Wizard / Multi-Step
         function goToStep(step) {
-            // Sembunyikan semua step
             document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
-            // Tampilkan step yang dituju
             document.getElementById('step-' + step).classList.add('active');
-            
-            // Scroll ke atas dengan halus
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Update Progress Bar & UI Indicator
             const bar = document.getElementById('progress-line');
             const ind1 = document.getElementById('ind-1');
             const ind2 = document.getElementById('ind-2');
@@ -295,7 +335,7 @@
                 ind3.className = 'w-8 h-8 rounded-full bg-slate-700 text-slate-400 font-bold flex items-center justify-center border-4 border-[#0f172a] transition-colors';
                 txt2.className = 'text-[10px] text-indigo-400 font-bold uppercase tracking-wider';
                 txt3.className = 'text-[10px] text-slate-500 font-bold uppercase tracking-wider';
-                calculate(); // pastikan data update saat masuk step 2
+                calculate(); 
             } else if (step === 3) {
                 bar.style.width = '100%';
                 bar.className = 'absolute left-0 top-1/2 transform -translate-y-1/2 h-1 bg-cyan-400 rounded-full z-0 transition-all duration-500';
@@ -303,12 +343,24 @@
                 ind3.className = 'w-8 h-8 rounded-full bg-cyan-400 text-slate-900 font-bold flex items-center justify-center border-4 border-[#0f172a] shadow-[0_0_15px_rgba(34,211,238,0.5)] transition-colors';
                 txt2.className = 'text-[10px] text-indigo-400 font-bold uppercase tracking-wider';
                 txt3.className = 'text-[10px] text-cyan-400 font-bold uppercase tracking-wider';
-                calculate(); // pastikan data final terhitung
+                calculate(); 
             }
         }
 
-        // --- Logic Kalkulator & Slider Auto-Balance (Sama seperti sebelumnya) ---
-        const sliderIds = ['slideOffline', 'slideWA', 'slideTiktok', 'slideIG', 'slideMarketplace', 'slideCanvassing'];
+        const sliderIds = ['slideOffline', 'slideWA', 'slideTiktok', 'slideIG', 'slideMarketplace', 'slideCanvassing', 'slideKomunitas', 'slideEvent'];
+        
+        // Dictionary nama rapi untuk ditampilkan di Action Plan
+        const channelNames = {
+            'slideOffline': 'Toko Offline',
+            'slideWA': 'WhatsApp (Status/DB)',
+            'slideTiktok': 'TikTok (Live/Video)',
+            'slideIG': 'Instagram (Ads/Feed)',
+            'slideMarketplace': 'Marketplace',
+            'slideCanvassing': 'Canvassing Agen',
+            'slideKomunitas': 'Komunitas',
+            'slideEvent': 'Event Bulanan'
+        };
+
         let oldValues = {};
 
         function getActiveSliders() {
@@ -442,25 +494,43 @@
             const totalLead = targetPcs * 10;
             document.getElementById('totalLeadText').innerText = formatNumber(totalLead);
 
+            // Container untuk menyuntikkan Action Plan di Step 3
+            const actionPlanContainer = document.getElementById('actionPlanContainer');
+            actionPlanContainer.innerHTML = ''; 
+
             sliderIds.forEach(id => {
                 const nameStr = id.replace('slide', '');
                 const isActive = document.getElementById(id.replace('slide', 'toggle')).checked;
                 let val = isActive ? parseInt(document.getElementById(id).value) : 0;
+                let leadValue = Math.round(totalLead * (val / 100));
                 
+                // Update UI di Step 2
                 document.getElementById('val' + nameStr).innerText = val + '%';
-                document.getElementById('lead' + nameStr).innerText = formatNumber(totalLead * (val / 100));
+                document.getElementById('lead' + nameStr).innerText = formatNumber(leadValue);
+
+                // Suntikkan data ke Step 3 (Hanya yang ON dan valuenya > 0)
+                if (isActive && val > 0) {
+                    actionPlanContainer.innerHTML += `
+                        <div class="flex justify-between items-center py-2 border-b border-slate-700/50 last:border-0">
+                            <span class="text-slate-300 text-sm flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                                ${channelNames[id]}
+                                <span class="text-indigo-400 text-xs font-bold">(${val}%)</span>
+                            </span>
+                            <span class="font-bold text-white text-sm bg-slate-900/50 px-2 py-1 rounded border border-slate-700">${formatNumber(leadValue)} Lead</span>
+                        </div>
+                    `;
+                }
             });
 
             const realOmzet = targetPcs * harga; 
             const harian = (targetPcs / 30).toFixed(1);
             const mingguan = (harian * 7).toFixed(1);
-            const repeatOrder = Math.round(targetPcs * 0.20);
 
             document.getElementById('kesimpulanOmzet').innerText = formatCurrency(realOmzet);
             document.getElementById('kesimpulanHarian').innerText = harian + ' Pcs';
             document.getElementById('kesimpulanMingguan').innerText = mingguan + ' Pcs';
             document.getElementById('kesimpulanBulanan').innerText = formatNumber(targetPcs) + ' Pcs';
-            document.getElementById('kesimpulanRO').innerText = formatNumber(repeatOrder) + ' Trx';
         }
 
         initSliders();
