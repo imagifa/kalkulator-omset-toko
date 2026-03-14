@@ -9,34 +9,25 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0f172a; color: #f8fafc; overflow-x: hidden; }
         
-        /* Glassmorphism styling */
+        /* Glassmorphism */
         .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 1.25rem; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); padding: 1.75rem; }
         
-        /* Input Styling */
+        /* Inputs */
         .input-premium { background-color: rgba(15, 23, 42, 0.6); border: 1px solid #334155; color: white; border-radius: 0.75rem; padding: 1rem; width: 100%; outline: none; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
         .input-premium:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); background-color: rgba(15, 23, 42, 0.9); }
         
-        /* Slider Styling */
+        /* Mobile Sliders */
         input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 26px; width: 26px; border-radius: 50%; background: #6366f1; cursor: pointer; margin-top: -9px; box-shadow: 0 0 12px rgba(99, 102, 241, 0.6); border: 2px solid #fff; transition: transform 0.1s; }
         input[type=range]::-webkit-slider-thumb:active { transform: scale(1.1); }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: #334155; border-radius: 999px; }
         input[type=range]:focus { outline: none; }
-        input[type=range]:disabled::-webkit-slider-thumb { background: #475569; box-shadow: none; border-color: #64748b; cursor: not-allowed; }
 
-        /* Step Transitions */
+        /* Wizard Transitions */
         .step-container { display: none; opacity: 0; transform: translateX(20px); transition: all 0.4s ease-in-out; }
         .step-container.active { display: block; opacity: 1; transform: translateX(0); animation: slideIn 0.4s ease-out forwards; }
         
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        /* Custom Scrollbar for list */
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 10px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
     </style>
 </head>
 <body class="p-4 md:p-8 max-w-xl mx-auto min-h-screen flex flex-col">
@@ -93,155 +84,164 @@
     </div>
 
     <div id="step-2" class="step-container flex-grow">
+        
+        <div class="bg-indigo-900/30 border border-indigo-800/50 rounded-xl p-4 mb-5 text-center">
+            <p class="text-sm text-indigo-200">Total <span id="totalLeadText" class="font-black text-white text-base bg-indigo-500/20 px-2 py-0.5 rounded">0</span> Leads dibutuhkan.</p>
+        </div>
+
         <div class="glass-card mb-6">
-            <div class="flex justify-between items-center border-b border-slate-700 pb-4 mb-5">
-                <h2 class="text-xl font-bold text-white flex items-center gap-3">
-                    <span class="bg-cyan-500/20 text-cyan-400 p-2 rounded-lg">🎯</span> Peta Strategi
-                </h2>
-                <span class="text-xs bg-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-full font-bold border border-indigo-500/30">Auto-Lock 100%</span>
+            <div class="mb-6 border-b border-slate-700 pb-5">
+                <h3 class="text-sm font-bold text-slate-300 mb-3 flex items-center gap-2 uppercase tracking-wide">
+                    <span>1. Ketuk Channel Yang Dipakai</span>
+                </h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleOffline" class="sr-only peer" checked onchange="handleToggle('slideOffline')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            Toko Offline
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleWA" class="sr-only peer" checked onchange="handleToggle('slideWA')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            WhatsApp
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleTiktok" class="sr-only peer" checked onchange="handleToggle('slideTiktok')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            TikTok Live
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleIG" class="sr-only peer" checked onchange="handleToggle('slideIG')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            IG / Meta Ads
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleMarketplace" class="sr-only peer" checked onchange="handleToggle('slideMarketplace')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            Marketplace
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleCanvassing" class="sr-only peer" checked onchange="handleToggle('slideCanvassing')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            Canvassing
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleKomunitas" class="sr-only peer" checked onchange="handleToggle('slideKomunitas')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            Komunitas
+                        </div>
+                    </label>
+                    <label class="cursor-pointer relative">
+                        <input type="checkbox" id="toggleEvent" class="sr-only peer" checked onchange="handleToggle('slideEvent')">
+                        <div class="px-2 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-center transition-all duration-200 border border-slate-700 bg-slate-800/50 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-400 peer-checked:shadow-[0_0_15px_rgba(79,70,229,0.3)]">
+                            Event Bulanan
+                        </div>
+                    </label>
+                </div>
             </div>
-            
-            <div class="bg-indigo-900/30 border border-indigo-800/50 rounded-xl p-4 mb-6">
-                <p class="text-sm text-indigo-200 leading-relaxed">Untuk capai target, butuh <span id="totalLeadText" class="font-black text-white text-base bg-indigo-500/20 px-2 py-0.5 rounded">0</span> Leads (Konversi 10%).</p>
-            </div>
-            
-            <div class="space-y-7 max-h-[50vh] overflow-y-auto custom-scroll pr-2">
-                <div class="transition-opacity duration-300" id="groupOffline">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleOffline" class="sr-only peer" checked onchange="handleToggle('slideOffline')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">Toko Offline</span>
-                        </div>
-                        <span id="valOffline" class="font-bold text-indigo-400 text-sm">20%</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideOffline" min="0" max="100" value="20">
-                        <span id="leadOffline" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
 
-                <div class="transition-opacity duration-300" id="groupWA">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleWA" class="sr-only peer" checked onchange="handleToggle('slideWA')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">WhatsApp (Status/DB)</span>
-                        </div>
-                        <span id="valWA" class="font-bold text-indigo-400 text-sm">15%</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideWA" min="0" max="100" value="15">
-                        <span id="leadWA" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
+            <div>
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wide">2. Atur Proporsi Target</h3>
+                    <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded font-bold border border-indigo-500/30">Auto 100%</span>
                 </div>
-
-                <div class="transition-opacity duration-300" id="groupTiktok">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleTiktok" class="sr-only peer" checked onchange="handleToggle('slideTiktok')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">TikTok (Live/Video)</span>
+                
+                <div class="space-y-6">
+                    <div id="wrapperOffline" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">Toko Offline</span>
+                            <span id="valOffline" class="font-bold text-indigo-400 text-sm">20%</span>
                         </div>
-                        <span id="valTiktok" class="font-bold text-indigo-400 text-sm">20%</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideTiktok" min="0" max="100" value="20">
-                        <span id="leadTiktok" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
-
-                <div class="transition-opacity duration-300" id="groupIG">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleIG" class="sr-only peer" checked onchange="handleToggle('slideIG')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">Instagram (Ads/Feed)</span>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideOffline" min="0" max="100" value="20">
+                            <span id="leadOffline" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
-                        <span id="valIG" class="font-bold text-indigo-400 text-sm">10%</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideIG" min="0" max="100" value="10">
-                        <span id="leadIG" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
 
-                <div class="transition-opacity duration-300" id="groupMarketplace">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleMarketplace" class="sr-only peer" checked onchange="handleToggle('slideMarketplace')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">Marketplace</span>
+                    <div id="wrapperWA" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">WhatsApp</span>
+                            <span id="valWA" class="font-bold text-indigo-400 text-sm">15%</span>
                         </div>
-                        <span id="valMarketplace" class="font-bold text-indigo-400 text-sm">15%</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideMarketplace" min="0" max="100" value="15">
-                        <span id="leadMarketplace" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
-
-                <div class="transition-opacity duration-300" id="groupCanvassing">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleCanvassing" class="sr-only peer" checked onchange="handleToggle('slideCanvassing')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">Canvassing Agen</span>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideWA" min="0" max="100" value="15">
+                            <span id="leadWA" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
-                        <span id="valCanvassing" class="font-bold text-indigo-400 text-sm">10%</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideCanvassing" min="0" max="100" value="10">
-                        <span id="leadCanvassing" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
 
-                <div class="transition-opacity duration-300" id="groupKomunitas">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleKomunitas" class="sr-only peer" checked onchange="handleToggle('slideKomunitas')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">Komunitas (Sekolah dll)</span>
+                    <div id="wrapperTiktok" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">TikTok Live</span>
+                            <span id="valTiktok" class="font-bold text-indigo-400 text-sm">20%</span>
                         </div>
-                        <span id="valKomunitas" class="font-bold text-indigo-400 text-sm">5%</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideKomunitas" min="0" max="100" value="5">
-                        <span id="leadKomunitas" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
-
-                <div class="transition-opacity duration-300" id="groupEvent">
-                    <div class="flex justify-between items-center mb-3">
-                        <div class="flex items-center gap-3">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="toggleEvent" class="sr-only peer" checked onchange="handleToggle('slideEvent')">
-                                <div class="w-10 h-6 bg-slate-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500 shadow-inner"></div>
-                            </label>
-                            <span class="font-semibold text-slate-200">Event Bulanan</span>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideTiktok" min="0" max="100" value="20">
+                            <span id="leadTiktok" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
                         </div>
-                        <span id="valEvent" class="font-bold text-indigo-400 text-sm">5%</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="slideEvent" min="0" max="100" value="5">
-                        <span id="leadEvent" class="font-bold text-white w-14 text-right text-sm bg-slate-800 py-1 rounded">0</span>
-                    </div>
-                </div>
 
+                    <div id="wrapperIG" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">IG / Meta Ads</span>
+                            <span id="valIG" class="font-bold text-indigo-400 text-sm">10%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideIG" min="0" max="100" value="10">
+                            <span id="leadIG" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
+                        </div>
+                    </div>
+
+                    <div id="wrapperMarketplace" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">Marketplace</span>
+                            <span id="valMarketplace" class="font-bold text-indigo-400 text-sm">15%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideMarketplace" min="0" max="100" value="15">
+                            <span id="leadMarketplace" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
+                        </div>
+                    </div>
+
+                    <div id="wrapperCanvassing" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">Canvassing Agen</span>
+                            <span id="valCanvassing" class="font-bold text-indigo-400 text-sm">10%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideCanvassing" min="0" max="100" value="10">
+                            <span id="leadCanvassing" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
+                        </div>
+                    </div>
+
+                    <div id="wrapperKomunitas" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">Komunitas</span>
+                            <span id="valKomunitas" class="font-bold text-indigo-400 text-sm">5%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideKomunitas" min="0" max="100" value="5">
+                            <span id="leadKomunitas" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
+                        </div>
+                    </div>
+
+                    <div id="wrapperEvent" class="block animate-fade">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-medium text-slate-200 text-sm">Event Bulanan</span>
+                            <span id="valEvent" class="font-bold text-indigo-400 text-sm">5%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="slideEvent" min="0" max="100" value="5">
+                            <span id="leadEvent" class="font-bold text-white w-12 text-right text-xs bg-slate-800 py-1 rounded">0</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
         
@@ -285,8 +285,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                     Action Plan (Leads Required)
                 </h3>
-                <div id="actionPlanContainer" class="space-y-2">
-                    </div>
+                <div id="actionPlanContainer" class="space-y-2"></div>
             </div>
         </div>
 
@@ -305,12 +304,15 @@
         </p>
     </footer>
 
+    <style>
+        /* Efek transisi ringan saat slider muncul/hilang */
+        .animate-fade { transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; }
+    </style>
+
     <script>
-        // Formatter
         const formatNumber = (num) => new Intl.NumberFormat('id-ID').format(Math.round(num));
         const formatCurrency = (num) => 'Rp ' + new Intl.NumberFormat('id-ID').format(Math.round(num));
 
-        // Logic Wizard / Multi-Step
         function goToStep(step) {
             document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
             document.getElementById('step-' + step).classList.add('active');
@@ -349,16 +351,10 @@
 
         const sliderIds = ['slideOffline', 'slideWA', 'slideTiktok', 'slideIG', 'slideMarketplace', 'slideCanvassing', 'slideKomunitas', 'slideEvent'];
         
-        // Dictionary nama rapi untuk ditampilkan di Action Plan
         const channelNames = {
-            'slideOffline': 'Toko Offline',
-            'slideWA': 'WhatsApp (Status/DB)',
-            'slideTiktok': 'TikTok (Live/Video)',
-            'slideIG': 'Instagram (Ads/Feed)',
-            'slideMarketplace': 'Marketplace',
-            'slideCanvassing': 'Canvassing Agen',
-            'slideKomunitas': 'Komunitas',
-            'slideEvent': 'Event Bulanan'
+            'slideOffline': 'Toko Offline', 'slideWA': 'WhatsApp', 'slideTiktok': 'TikTok Live',
+            'slideIG': 'IG / Meta Ads', 'slideMarketplace': 'Marketplace', 'slideCanvassing': 'Canvassing',
+            'slideKomunitas': 'Komunitas', 'slideEvent': 'Event Bulanan'
         };
 
         let oldValues = {};
@@ -377,27 +373,27 @@
 
         function handleToggle(sliderId) {
             const toggleId = sliderId.replace('slide', 'toggle');
-            const groupId = sliderId.replace('slide', 'group');
+            const wrapperId = sliderId.replace('slide', 'wrapper'); // Ambil ID container slidernya
             const isChecked = document.getElementById(toggleId).checked;
             
             let activeIds = getActiveSliders();
             if (activeIds.length === 0) {
-                alert("Peringatan: Minimal 1 strategi channel harus aktif!");
+                alert("Minimal 1 channel penjualan harus aktif!");
                 document.getElementById(toggleId).checked = true;
                 return;
             }
 
-            const groupEl = document.getElementById(groupId);
+            const wrapperEl = document.getElementById(wrapperId);
             const sliderEl = document.getElementById(sliderId);
 
             if (!isChecked) {
-                groupEl.classList.add('opacity-30', 'grayscale');
+                wrapperEl.classList.add('hidden'); // Sembunyikan slider jika channel mati
                 sliderEl.disabled = true;
                 sliderEl.value = 0;
                 oldValues[sliderId] = 0;
                 rebalanceAllActive();
             } else {
-                groupEl.classList.remove('opacity-30', 'grayscale');
+                wrapperEl.classList.remove('hidden'); // Munculkan slider jika channel nyala
                 sliderEl.disabled = false;
                 sliderEl.value = 10; 
                 handleSliderChange({ target: { id: sliderId, value: 10 } });
@@ -494,7 +490,6 @@
             const totalLead = targetPcs * 10;
             document.getElementById('totalLeadText').innerText = formatNumber(totalLead);
 
-            // Container untuk menyuntikkan Action Plan di Step 3
             const actionPlanContainer = document.getElementById('actionPlanContainer');
             actionPlanContainer.innerHTML = ''; 
 
@@ -504,11 +499,9 @@
                 let val = isActive ? parseInt(document.getElementById(id).value) : 0;
                 let leadValue = Math.round(totalLead * (val / 100));
                 
-                // Update UI di Step 2
                 document.getElementById('val' + nameStr).innerText = val + '%';
                 document.getElementById('lead' + nameStr).innerText = formatNumber(leadValue);
 
-                // Suntikkan data ke Step 3 (Hanya yang ON dan valuenya > 0)
                 if (isActive && val > 0) {
                     actionPlanContainer.innerHTML += `
                         <div class="flex justify-between items-center py-2 border-b border-slate-700/50 last:border-0">
